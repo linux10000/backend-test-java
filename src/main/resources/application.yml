@@ -1,0 +1,33 @@
+# Enable response compression
+server.compression.enabled: true
+
+# The comma-separated list of mime types that should be compressed
+server.compression.mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+
+# Compress the response only if the response size is at least 1KB
+server.compression.min-response-size: 1024
+
+# Enable HTTP/2 support, if the current environment supports it
+server.http2.enabled: true
+
+spring.servlet.multipart.enabled: true
+
+
+
+server.port: 8446
+
+#spring:
+#  datasource:
+#    url: jdbc:h2:mem:customerdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#    platform: h2
+
+  # enable H2 web console and set url for web console
+  # http://localhost:8080/console
+#  h2:
+#    console:
+#      enabled: true
+#      path: /console
+

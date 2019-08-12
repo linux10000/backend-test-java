@@ -1,8 +1,11 @@
 package br.com.fcamara.provajava.pojo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "empresa")
@@ -10,6 +13,7 @@ public class Empresa {
 
 	private Integer empnid;
 	private String empcnome;
+	private String empccnpj;
 	private String empcendereco;
 	private String empctelefone;
 	private Integer empnvagacarros;
@@ -19,11 +23,12 @@ public class Empresa {
 		
 	}
 
-	public Empresa(Integer empnid, String empcnome, String empcendereco, String empctelefone, Integer empnvagacarros,
+	public Empresa(Integer empnid, String empcnome, String empccnpj, String empcendereco, String empctelefone, Integer empnvagacarros,
 			Integer empnvagamotos) {
 		super();
 		this.empnid = empnid;
 		this.empcnome = empcnome;
+		this.empccnpj = empccnpj;
 		this.empcendereco = empcendereco;
 		this.empctelefone = empctelefone;
 		this.empnvagacarros = empnvagacarros;
@@ -31,6 +36,7 @@ public class Empresa {
 	}
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getEmpnid() {
 		return empnid;
 	}
@@ -77,5 +83,13 @@ public class Empresa {
 
 	public void setEmpnvagamotos(Integer empnvagamotos) {
 		this.empnvagamotos = empnvagamotos;
+	}
+
+	public String getEmpccnpj() {
+		return empccnpj;
+	}
+
+	public void setEmpccnpj(String empccnpj) {
+		this.empccnpj = empccnpj;
 	}
 }

@@ -1,6 +1,8 @@
 package br.com.fcamara.provajava.pojo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,7 +15,7 @@ public class Veiculo {
 	private String veicmodelo;
 	private String veiccor;
 	private String veicplaca;
-	private Integer veintipo;
+	private Integer veintipo; // 0 = carro, 1 = moto
 	
 	public Veiculo() {
 		
@@ -31,6 +33,7 @@ public class Veiculo {
 	}
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getVeinid() {
 		return veinid;
 	}

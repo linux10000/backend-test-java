@@ -67,7 +67,7 @@ public class JpaUtils {
 	}
 
 	
-	@Bean
+	@Bean()
 	public PlatformTransactionManager transactionManagerPrincipal(
 			EntityManagerFactory emf) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();

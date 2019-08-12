@@ -3,6 +3,8 @@ package br.com.fcamara.provajava.pojo;
 import java.time.OffsetDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -31,6 +33,7 @@ public class MovVeiculo {
 	}
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getMovnid() {
 		return movnid;
 	}

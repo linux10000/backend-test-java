@@ -1,6 +1,8 @@
 package br.com.fcamara.provajava.pojo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -26,6 +28,7 @@ public class Usuario {
 	}
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getUsonid() {
 		return usonid;
 	}

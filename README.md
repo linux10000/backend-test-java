@@ -1,58 +1,51 @@
-### FCamara 🚀
-*"Queremos ser como uma árvore, 
-  crescer um pouco todos os dias e tentar tocar o céu, 
-  sem perder a solidez de nossas raízes."*
-Conheça: www.fcamara.com.br
+# Backend Java Test
 
-## Teste para vaga de Desenvolvedor Back-end Java
-Criar uma API REST para gerenciar um estacionamento de carros e motos.
+## Endpoints
 
-## Cadastro de estabelecimento
+Os endpoints, juntamente com os parametros necessários para executa-los, estão no arquivo src/main/resources/restlet-client-services.json. É necessário instalar a extensão do chrome Restlet Client (https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm) e importar o arquivo json para consulta-los.
+**Os endpoints necessitam dos headers corretos para serem chamados.**
 
-Criar um cadastro da empresa com os seguintes campos:
-- Nome;
-- CNPJ;
-- Endereço;
-- Telefone;
-- Quantidade de vagas para motos;
-- Quantidade de vagas para carros.
+### Autenticacao
+- Login: http://localhost:8446/rest/auth - POST
 
-**Todos** os campos são de preenchimento obrigatório.
+### Empresa
+- inserir: http://localhost:8446/rest/empresa - POST
+- alterar: http://localhost:8446/rest/empresa - PUT
+- deletar: http://localhost:8446/rest/empresa?empnid= - DELETE
+- listar todas: http://localhost:8446/rest/empresa/all - GET
 
-## Cadastro de veículos
+### Veículo
+- inserir: http://localhost:8446/rest/veiculo - POST
+- alterar: http://localhost:8446/rest/veiculo - PUT
+- deletar: http://localhost:8446/rest/veiculo?veinid= - DELETE
+- listar todos: http://localhost:8446/rest/veiculo/all - GET
 
-Criar um cadastro de veículos com os seguintes campos:
-- Marca;
-- Modelo;
-- Cor;
-- Placa;
-- Tipo.
+### Movimento
+- entrada: http://localhost:8446/rest/movimento/entrada - POST
+- saida: http://localhost:8446/rest/movimento/saida - POST
+- sumario geral: http://localhost:8446/rest/movimento/sumario - GET
+- sumario por hora: http://localhost:8446/rest/movimento/sumario-por-hora - GET
 
-**Todos** os campos são de preenchimento obrigatório.
+### Relatório
+Pode executar pelo browser normalmente.
+- sumario geral - http://localhost:8446/report/sumario/pdf?token=
+- sumario por hora - http://localhost:8446/report/sumario-por-hora/pdf?token=
 
-## Funcionalidades
+### H2
+- console: http://localhost:8082/
 
-   - **Estabelecimento:** CRUD;
-   - **Veículos:** CRUD;
-   - **Controle de entrada e saída de veículos.**
+## Tecnologias Utilizadoas
+- Spring Boot
+- H2
+- Hibernate
+- Jackson
+- WebFlux
+- JWT
+- Guava
+- Jaxb
+- Jasper Reports
 
-## Requisitos
+## Instalação e Execução
+Sendo o diretorio corrente a pasta raiz do projeto, **mvn clean install** irá gerar um arquivo .jar dentro da pasta target.
+Para executar, basta rodar **java -jar target/provajava-0.0.1-SNAPSHOT.jar**
 
-   - Modelagem de dados;
-   - O retorno deverá ser em formato JSON e XML;
-   - Requisições GET, POST, PUT ou DELETE, conforme a melhor prática;
-   - A persistência dos dados pode ser realizada da maneira que preferir;
-   - Criar README do projeto descrevendo as tecnologias utilizadas, chamadas dos serviços e configurações necessário para executar a aplicação.
-   
-## Ganha mais pontos
-   - Desenvolver utilizando TDD;
-   - Criar API de relatório;
-   - Sumário da quantidade de entrada e saída;
-   - Sumário da quantidade de entrada e saída de veículos por hora;
-   - Criar uma solução de autenticação.
-
-## Submissão
-Crie um fork do teste para acompanharmos o seu desenvolvimento através dos seus commits.
-
-## Obrigado!
-Agradecemos sua participação no teste. Boa sorte! 😄

@@ -33,7 +33,7 @@ public class VeiculoServiceImpl implements VeiculoService {
 		Validacao.notNullOrEmpty("modelo", vei.getVeicmodelo());
 		Validacao.notNullOrEmpty("placa", vei.getVeicplaca());
 		Validacao.notNull("tipo", vei.getVeintipo());
-		
+
 		if ( veiculoDao.countByVeicplaca(vei.getVeicplaca()) > 0 ) throw new VeiculoExistException();
 		
 		return veiculoDao.saveAndFlush(vei);
@@ -57,7 +57,6 @@ public class VeiculoServiceImpl implements VeiculoService {
 		old.get().setVeiccor(vei.getVeiccor());
 		old.get().setVeicmarca(vei.getVeicmarca());
 		old.get().setVeicmodelo(vei.getVeicmodelo());
-		old.get().setVeicplaca(vei.getVeicplaca());
 		old.get().setVeintipo(vei.getVeintipo());
 		
 		return veiculoDao.saveAndFlush(old.get());

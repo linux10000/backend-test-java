@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
@@ -22,6 +23,9 @@ public class AuthInterceptor implements WebFilter {
 		if ( !exchange.getRequest().getMethodValue().contains("OPTIONS") && !exchange.getRequest().getPath().value().contains("/rest/auth") ) {
 			
 			List<String> headerAuthorizationList = exchange.getRequest().getHeaders().get("Authorization");
+			if ( headerAuthorizationList == null && exchange.getRequest().getMethod().equals(HttpMethod.GET) )
+				headerAuthorizationList = exchange.getRequest().getQueryParams().get("token");
+			
 			TokenManager hcfTokenManager = new TokenManager();
 			DecodedJWT jwt = hcfTokenManager.getToken(headerAuthorizationList == null || headerAuthorizationList.isEmpty() ? "" : headerAuthorizationList.get(0));
 			

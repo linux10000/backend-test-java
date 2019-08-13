@@ -46,11 +46,8 @@ public class TokenServiceImpl implements TokenService {
 				.withClaim("userId", uso.getUsonid().toString())
 				.sign(algorithmHS);
 		
-		//String tokenKey = Base64.getEncoder().encodeToString(MessageDigest.getInstance("SHA-256").digest(token.getBytes()));
-		
 		Map<String, String> r = new HashMap<>();
 		r.put("token", token);
-		//r.put("tokenKey", tokenKey);
 		r.put("login", username);
 		r.put("name", uso.getUsocnome());
 		

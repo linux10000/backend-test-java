@@ -2,7 +2,6 @@ package br.com.fcamara.provajava.helper;
 
 import java.nio.charset.StandardCharsets;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,15 +9,12 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.codec.ServerCodecConfigurer;
-import org.springframework.http.codec.json.AbstractJackson2Decoder;
 import org.springframework.http.codec.json.AbstractJackson2Encoder;
 import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.MimeType;
 import org.springframework.web.reactive.config.CorsRegistry;
 import org.springframework.web.reactive.config.EnableWebFlux;
@@ -27,7 +23,6 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootApplication
-//@EnableTransactionManagement
 @EnableAutoConfiguration
 @EntityScan("br.com.fcamara.provajava.pojo")
 @EnableJpaRepositories(basePackages = "br.com.fcamara.provajava.dao")
@@ -51,7 +46,6 @@ class CorsGlobalConfiguration implements WebFluxConfigurer {
         corsRegistry.addMapping("/**")
           .allowedOrigins("*")
           .allowedMethods("*")
-//          .allowedMethods("GET, POST, PUT, DELETE, OPTIONS")
           .maxAge(3600);
     }
     
@@ -65,17 +59,18 @@ class CorsGlobalConfiguration implements WebFluxConfigurer {
     
     @Override
     public void configureHttpMessageCodecs(ServerCodecConfigurer configurer) {
-    	configurer.registerDefaults(false);
+    	configurer.registerDefaults(true);
     	
-//    	configurer.defaultCodecs().jackson2JsonEncoder(new Jackson2JsonEncoder(objectMapper));
-//    	configurer.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder(objectMapper));
+    	configurer.defaultCodecs().jackson2JsonEncoder(new Jackson2JsonEncoder(objectMapper));
+    	configurer.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder(objectMapper));
 //        configurer.customCodecs().decoder( Jaxb2XmlDecoder());  
 //        configurer.customCodecs().encoder(new Jaxb2XmlEncoder());
 //        configurer.defaultCodecs().jaxb2Decoder(new Jaxb2XmlDecoder());  
 //        configurer.defaultCodecs().jaxb2Encoder(new Jaxb2XmlEncoder());
     	
-    	configurer.customCodecs().encoder(new Jackson2JsonEncoder(objectMapper));
-    	configurer.customCodecs().decoder(new Jackson2JsonDecoder(objectMapper));
+    	
+//    	configurer.customCodecs().encoder(new Jackson2JsonEncoder(objectMapper));
+//    	configurer.customCodecs().decoder(new Jackson2JsonDecoder(objectMapper));
     	
 		ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.xml().build();
 //		configurer.customCodecs().reader(stringReader);
